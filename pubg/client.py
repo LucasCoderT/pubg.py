@@ -1,8 +1,7 @@
 import aiohttp
 import asyncio
 import logging
-import models
-import errors
+from pubg import models,errors
 
 logger = logging.getLogger(__name__)
 
@@ -75,6 +74,8 @@ class PubGClient:
 
     @asyncio.coroutine
     def get_nickname_by_steam(self, steam_id, type="steam"):
+        if type not in self.valid_types:
+            raise errors.BadArgument(type)
         endpoint = "{0}/search/{1}".format(self.base_url, type)
         response = yield from self.__http(endpoint, {"steamId": steam_id})
         if response is not None:
