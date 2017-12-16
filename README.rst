@@ -8,11 +8,14 @@ Installing
 ----------
 
 .. code:: sh
+
     python3 -m pip install pubg.py
 
 
 or you can install from github via
+
 .. code:: sh
+
     $python3 -m pip install git+https://github.com/datmellow/pubg.py
 
 
@@ -20,6 +23,7 @@ Quick Example
 -------------
 
 .. code:: py
+
     import pubg
     import asyncio
 
@@ -40,6 +44,7 @@ Note that in Python 3.4 you use ``@asyncio.coroutine`` instead of ``async def`` 
 
 Requirements
 ------------
+
 * Python 3.4.2+
 * ``aiohttp`` library
 
