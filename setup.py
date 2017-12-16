@@ -16,6 +16,7 @@ requirements = ["aiohttp>=2.2.3"]
 if on_rtd:
     requirements.append('sphinxcontrib-napoleon')
     requirements.append('sphinxcontrib-asyncio')
+    requirements.append("sphinx==1.5.6")
 
 version = ''
 with open('pubg/__init__.py') as f:
