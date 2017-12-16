@@ -91,3 +91,6 @@ class PubGClient:
         response = yield from self.__http(endpoint)
         if response is not None:
             return [models.Match(**data) for data in response]
+
+    def __del__(self):
+        self.session.close()
