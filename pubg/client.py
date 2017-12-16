@@ -70,7 +70,7 @@ class PubGClient:
 
     @asyncio.coroutine
     def get_user(self, nickname, season=None, mode=None, region=None, type="pc"):
-        """
+        """|coro|
 
         Parameters
         ----------
@@ -110,7 +110,7 @@ class PubGClient:
 
     @asyncio.coroutine
     def get_nickname_by_steam(self, steam_id, type="steam"):
-        """
+        """|coro|
 
         Parameters
         ----------
@@ -135,7 +135,7 @@ class PubGClient:
 
     @asyncio.coroutine
     def get_match_history(self, account_id, type="pc"):
-        """
+        """|coro|
 
         Parameters
         ----------

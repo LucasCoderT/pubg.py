@@ -18,6 +18,8 @@ __copyright__ = "Copyright 2017-2018 Datmellow"
 __version__ = "0.0.1a"
 
 from pubg.client import PubGClient
+from pubg.models import *
+from pubg.errors import *
 
 VersionInfo = namedtuple('VersionInfo', 'major minor micro releaselevel serial')
 

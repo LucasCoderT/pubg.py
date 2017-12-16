@@ -3,17 +3,44 @@
 
 API Reference
 ==============
-.. automodule:: pubg.client
-    :members:
+
+Client
+------
+
+.. autoclass:: PubGClient()
+
+    .. automethod:: get_user()
+    .. automethod:: get_nickname_by_steam()
+    .. automethod:: get_match_history()
 
 
 Models
-------
-.. automodule:: pubg.models
+======
+
+User
+----
+
+.. autoclass:: User()
     :members:
 
-Errors
-------
-.. automodule:: pubg.errors
+Stats
+-----
+
+.. autoclass:: Stats()
     :members:
+
+Match
+-----
+
+.. autoclass:: Match()
+    :members:
+
+
+Errors
+======
+.. autoclass:: BadArgument()
+    :members:
+.. autoclass:: BaseException()
+    :members:
+
 
