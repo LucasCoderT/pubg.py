@@ -1,7 +1,7 @@
 import aiohttp
 import asyncio
 import logging
-from pubg import models,errors
+from pubg import models, errors
 
 logger = logging.getLogger(__name__)
 
@@ -40,6 +40,8 @@ class PubGClient:
                 session = yield from self.session.get(endpoint, params=params, headers=headers)
             if session.status == 200:
                 response_data = yield from session.json()
+                if "code" in response_data:
+                    raise errors.BaseException(response_data)
                 self.last_header = dict(session.headers)
                 return response_data
             elif session.status != 429:
