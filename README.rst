@@ -3,6 +3,10 @@ pubg.py
 
 .. image:: https://img.shields.io/pypi/v/pubg.py.svg
    :target: https://pypi.python.org/pypi/pubg.py
+.. image:: https://img.shields.io/pypi/v/pubg.py.svg
+   :target: https://pypi.python.org/pypi/pubg.py
+.. image:: http://pubgpy.readthedocs.io/en/latest/?badge=latest
+    :target: http://pubgpy.readthedocs.io/en/latest/?badge=latest
 
 wrapper for https://pubgtracker.com/site-api api using aiohttp
 
