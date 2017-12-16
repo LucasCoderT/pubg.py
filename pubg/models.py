@@ -5,7 +5,10 @@ class User:
     def __init__(self, **kwargs):
         self.id = kwargs.get('accountId')
         self.avatar = kwargs.get('avatar')
-        self.last_update = datetime.datetime.strptime(kwargs.get('lastUpdated', ""), "%Y-%m-%dT%H:%M:%S.%f")
+        if kwargs.get('lastUpdated') is not None:
+            self.last_update = datetime.datetime.strptime(kwargs.get('lastUpdated'), "%Y-%m-%dT%H:%M:%S.%f")
+        else:
+            self.last_update = None
         self.nickname = kwargs.get("nickname")
         self.platform = kwargs.get('platform')
         self.pugbg_tracking_id = kwargs.get('pubgTrackerId')
