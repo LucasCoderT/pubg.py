@@ -14,6 +14,9 @@ class User:
         self.pugbg_tracking_id = kwargs.get('pubgTrackerId')
         self.stats = [Stats(**data) for data in kwargs.get('stats', {})]
 
+    def __str__(self):
+        return self.nickname
+
 
 class Stats:
     def __init__(self, **kwargs):
