@@ -55,13 +55,13 @@ class PubGClient:
 
     @asyncio.coroutine
     def get_user(self, nickname, season=None, mode=None, region=None, type="pc"):
-        if season not in self.seasons:
+        if season not in self.seasons and season is not None:
             raise errors.BadArgument(season)
-        if mode not in self.modes:
+        if mode not in self.modes and mode is not None:
             raise errors.BadArgument(mode)
-        if region not in self.valid_regions:
+        if region not in self.valid_regions and region is not None:
             raise errors.BadArgument(region)
-        if type not in self.valid_types:
+        if type not in self.valid_types and type is not None:
             raise errors.BadArgument(type)
         params = {}
         for pub_filter, data in {"season": season, "mode": mode, "region": region}.items():
