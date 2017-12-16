@@ -1,6 +1,9 @@
 pubg.py
 =======
 
+.. image:: https://img.shields.io/pypi/v/pubg.py.svg
+   :target: https://pypi.python.org/pypi/pubg.py
+
 wrapper for https://pubgtracker.com/site-api api using aiohttp
 
 
