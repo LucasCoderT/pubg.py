@@ -15,6 +15,19 @@ class PubGClient:
     valid_types = ("pc",)
 
     def __init__(self, api_key, *, session=None, loop=None):
+        """
+
+        The main client for making requests
+
+        Parameters
+        ----------
+        api_key : str
+            The API Key
+        session : `class:ClientSession`
+            the aiohttp ClientSession obj for making requests. Will create one if none provided
+        loop : `class:AbstractEventLoop`
+            The loop for the program to attach too
+        """
         self.api_key = api_key
         self.loop = loop or asyncio.get_event_loop()
         self.session = session or aiohttp.ClientSession(loop=self.loop)
@@ -57,6 +70,27 @@ class PubGClient:
 
     @asyncio.coroutine
     def get_user(self, nickname, season=None, mode=None, region=None, type="pc"):
+        """
+
+        Parameters
+        ----------
+        nickname : str
+            The nickname to search/retrieve
+        season : Optional[str]
+            The season to filter by
+        mode : Optional[str]
+            the mode to filter by
+        region : Optional[str]
+            the region to filter by
+        type :
+            the platform type. This exists in case more platforms become available later on
+
+        Returns
+        -------
+        :class:`User`
+            if any found otherwise returns ``None``
+
+        """
         if season not in self.seasons and season is not None:
             raise errors.BadArgument(season)
         if mode not in self.modes and mode is not None:
@@ -76,6 +110,22 @@ class PubGClient:
 
     @asyncio.coroutine
     def get_nickname_by_steam(self, steam_id, type="steam"):
+        """
+
+        Parameters
+        ----------
+        steam_id : str
+            the steamID to query
+        type : Optional[str]
+            the platform type. This exists in case more platforms become available later on
+
+
+        Returns
+        -------
+        str
+            The nickname if any found
+
+        """
         if type not in self.valid_types:
             raise errors.BadArgument(type)
         endpoint = "{0}/search/{1}".format(self.base_url, type)
@@ -84,13 +134,29 @@ class PubGClient:
             return response
 
     @asyncio.coroutine
-    def get_match_history(self, accountid, type="pc"):
-        if isinstance(accountid, models.User):
-            accountid = accountid.id
-        endpoint = "{0}/matches/{1}/{2}".format(self.base_url, type, accountid)
+    def get_match_history(self, account_id, type="pc"):
+        """
+
+        Parameters
+        ----------
+        account_id : Union[:class:`User`,str]
+            account to query for match history, can be a type :class:`User` or str
+        type : Optional[str]
+            the platform type. This exists in case more platforms become available later on
+
+        Returns
+        -------
+        list[:class:`Match`]
+
+        """
+        if isinstance(account_id, models.User):
+            account_id = account_id.id
+        endpoint = "{0}/matches/{1}/{2}".format(self.base_url, type, account_id)
         response = yield from self.__http(endpoint)
         if response is not None:
             return [models.Match(**data) for data in response]
+        else:
+            return []
 
     def __del__(self):
         self.session.close()
